@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Background = ({ speeds, moveLeft, moveRight }: Props) => {
-  const [sunTexture, sunWidth, sunHeight] = useTexture(sun, 0.01);
+  const [sunTexture, , sunWidth, sunHeight] = useTexture(sun, 0.01);
 
   return (
     <>
@@ -26,8 +26,8 @@ const Background = ({ speeds, moveLeft, moveRight }: Props) => {
       />
       <ParallaxBackground
         speeds={speeds}
-        moveLeft={moveRight}
-        moveRight={moveLeft}
+        moveLeft={moveLeft}
+        moveRight={moveRight}
       />
     </>
   );

@@ -17,10 +17,10 @@ type Props = {
 const Foreground = ({ speed, moveLeft, moveRight }: Props) => {
   const [x, setX] = useState<number>(0);
 
-  const [post1Texture, width, height] = useTexture(post1, 0.01);
+  const [post1Texture, , width, height] = useTexture(post1, 0.01);
   const [post2Texture, ,] = useTexture(post2, 0.01);
   const [post3Texture, ,] = useTexture(post3, 0.01);
-  const [powerCabelTexture, cabelWidth, cabelHeight] = useTexture(
+  const [powerCabelTexture, , cabelWidth, cabelHeight] = useTexture(
     powerCabel,
     0.01
   );
@@ -31,9 +31,9 @@ const Foreground = ({ speed, moveLeft, moveRight }: Props) => {
   const cabelRation = cabelWidth / cabelHeight;
   const cabelScale: [number, number, number] = [cabelRation * 3, 4.3, 1];
 
-  useFrame(() => {
-    if (moveLeft) setX((prev) => prev + speed);
-    if (moveRight) setX((prev) => prev - speed);
+  useFrame((state, delta) => {
+    if (moveLeft) setX((prev) => prev - speed * delta);
+    if (moveRight) setX((prev) => prev + speed * delta);
   });
 
   return (

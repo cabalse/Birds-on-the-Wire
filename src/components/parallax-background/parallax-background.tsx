@@ -13,25 +13,29 @@ type Props = {
 const ParallaxBackground = ({ speeds, moveLeft, moveRight }: Props) => {
   return (
     <>
+      {/* Furthest Clouds */}
       <InfinitScrollBackground
         textureFile={back}
         moveLeft={moveLeft}
         moveRight={moveRight}
         speed={speeds[0]}
+        offSet={[0, 1]}
       />
+      {/* Middle Clouds */}
       <InfinitScrollBackground
         textureFile={mid}
         moveLeft={moveLeft}
         moveRight={moveRight}
         speed={speeds[1]}
-        offSet={[0, -1]}
+        offSet={[0, 1.3]}
       />
+      {/* Mountains */}
       <InfinitScrollBackground
         textureFile={mountains}
         moveLeft={moveLeft}
         moveRight={moveRight}
         speed={speeds[2]}
-        offSet={[0, -3]}
+        offSet={[0, 0]}
       />
     </>
   );

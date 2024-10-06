@@ -3,9 +3,9 @@ import { Suspense, useState } from "react";
 
 import Background from "./components/background";
 import DetectKeyPress from "./components/detect-key-press";
+import Foreground from "./components/foreground";
 
 import "./app.css";
-import Foreground from "./components/foreground";
 
 function App() {
   const [movement, setMovement] = useState({
@@ -26,14 +26,14 @@ function App() {
       <Canvas>
         <Suspense fallback={null}>
           <Background
-            speeds={[0.005, 0.01, 0.03]}
-            moveLeft={movement.moveLeft}
-            moveRight={movement.moveRight}
+            speeds={[0.5, 1.3, 3]} // Speeds for the three different layers of the background
+            moveLeft={movement.moveRight}
+            moveRight={movement.moveLeft}
           />
           <Foreground
-            speed={0.07}
-            moveLeft={movement.moveLeft}
-            moveRight={movement.moveRight}
+            speed={6}
+            moveLeft={movement.moveRight}
+            moveRight={movement.moveLeft}
           />
         </Suspense>
       </Canvas>
