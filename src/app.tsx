@@ -4,6 +4,7 @@ import { Suspense, useState } from "react";
 import Background from "./components/background";
 import DetectKeyPress from "./components/detect-key-press";
 import Foreground from "./components/foreground";
+import Player from "./components/player/player";
 
 import "./app.css";
 
@@ -35,6 +36,7 @@ function App() {
             moveLeft={movement.moveRight}
             moveRight={movement.moveLeft}
           />
+          <Player facing={movement.moveLeft ? "left" : "right"} />
         </Suspense>
       </Canvas>
     </div>
