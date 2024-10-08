@@ -7,12 +7,14 @@ import Foreground from "./components/foreground";
 import Player from "./components/player/player";
 
 import "./app.css";
+import Bombs from "./components/bombs/bombs";
 
 function App() {
   const [movement, setMovement] = useState({
     moveLeft: false,
     moveRight: false,
   });
+  const [dropBomb, setDropBomb] = useState(false);
 
   return (
     <div className="canvas-container">
@@ -23,6 +25,9 @@ function App() {
         onMovingLeft={(value) =>
           setMovement((prev) => ({ ...prev, moveLeft: value }))
         }
+        onBombDrop={() => {
+          setDropBomb(true);
+        }}
       />
       <Canvas>
         <Suspense fallback={null}>
@@ -37,6 +42,15 @@ function App() {
             moveRight={movement.moveLeft}
           />
           <Player facing={movement.moveLeft ? "left" : "right"} />
+          <Bombs
+            speed={{ x: 6, y: 2 }} // Speed x - for movement when player moves sideways, y - for the dropping bomb
+            moveLeft={movement.moveRight}
+            moveRight={movement.moveLeft}
+            dropBomb={dropBomb}
+            onBombDropped={() => {
+              setDropBomb(false);
+            }}
+          />
         </Suspense>
       </Canvas>
     </div>

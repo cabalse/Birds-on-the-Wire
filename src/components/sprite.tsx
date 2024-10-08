@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { Texture } from "three";
+import { forwardRef } from "react";
+import { Object3DEventMap, Sprite as ThreeSprite, Texture } from "three";
 
 type Props = {
   texture: Texture;
@@ -8,14 +8,15 @@ type Props = {
   rotation?: number;
 };
 
-function Sprite({ texture, scale, position, rotation = 0 }: Props) {
-  const ref = useRef(null);
-
+const Sprite = forwardRef<ThreeSprite<Object3DEventMap>, Props>(function (
+  { texture, scale, position, rotation = 0 }: Props,
+  ref
+) {
   return (
     <sprite scale={scale} position={position} ref={ref}>
       <spriteMaterial rotation={rotation} attach="material" map={texture} />
     </sprite>
   );
-}
+});
 
 export default Sprite;
