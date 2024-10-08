@@ -1,4 +1,3 @@
-import { useFrame } from "@react-three/fiber";
 import Alien from "./alien";
 
 const scale = 1.8;
@@ -9,8 +8,6 @@ type Props = {
 };
 
 const Player = ({ facing }: Props) => {
-  useFrame((state, delta) => {});
-
   return (
     <group position={[0, 2.4, 0]}>
       <Alien

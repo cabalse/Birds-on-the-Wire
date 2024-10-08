@@ -48,7 +48,9 @@ const Bombs = ({
             position={{ x: dropPosition.x, y: dropPosition.y }}
             key={id}
             speed={speed.y}
-            onPositionChange={(position) => {}}
+            onPositionChange={(position) => {
+              console.log(position);
+            }}
           />
         );
         return [...prev, newBomb];

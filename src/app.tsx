@@ -8,6 +8,7 @@ import Player from "./components/player/player";
 
 import "./app.css";
 import Bombs from "./components/bombs/bombs";
+import Birds from "./components/birds/birds";
 
 function App() {
   const [movement, setMovement] = useState({
@@ -50,6 +51,11 @@ function App() {
             onBombDropped={() => {
               setDropBomb(false);
             }}
+          />
+          <Birds
+            speed={{ x: 6, y: 2 }}
+            moveLeft={movement.moveRight}
+            moveRight={movement.moveLeft}
           />
         </Suspense>
       </Canvas>

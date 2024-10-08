@@ -3,19 +3,19 @@ import { useFrame } from "@react-three/fiber";
 import useTexture from "../../hooks/use-texture";
 import Sprite from "../sprite";
 
-import frame000 from "./../../assets/alien/__alien_enemy_4_red_white_flying_000.png";
-import frame001 from "./../../assets/alien/__alien_enemy_4_red_white_flying_001.png";
-import frame002 from "./../../assets/alien/__alien_enemy_4_red_white_flying_002.png";
-import frame003 from "./../../assets/alien/__alien_enemy_4_red_white_flying_003.png";
-import frame004 from "./../../assets/alien/__alien_enemy_4_red_white_flying_004.png";
-import frame005 from "./../../assets/alien/__alien_enemy_4_red_white_flying_005.png";
-import frame006 from "./../../assets/alien/__alien_enemy_4_red_white_flying_006.png";
-import frame007 from "./../../assets/alien/__alien_enemy_4_red_white_flying_007.png";
-import frame008 from "./../../assets/alien/__alien_enemy_4_red_white_flying_008.png";
+import frame000 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_000.png";
+import frame001 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_001.png";
+import frame002 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_002.png";
+import frame003 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_003.png";
+import frame004 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_004.png";
+import frame005 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_005.png";
+import frame006 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_006.png";
+import frame007 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_007.png";
+import frame008 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white_flying_008.png";
 
-import frameRight000 from "./../../assets/alien/__alien_enemy_4_red_white_flying_right_000.png";
-import frameRight001 from "./../../assets/alien/__alien_enemy_4_red_white_flying_right_001.png";
-import frameRight002 from "./../../assets/alien/__alien_enemy_4_red_white_flying_right_002.png";
+import frameRight000 from "./../../assets/alien/flying_right/__alien_enemy_4_red_white_flying_right_000.png";
+import frameRight001 from "./../../assets/alien/flying_right/__alien_enemy_4_red_white_flying_right_001.png";
+import frameRight002 from "./../../assets/alien/flying_right/__alien_enemy_4_red_white_flying_right_002.png";
 
 type Props = {
   scale: number;
