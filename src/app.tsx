@@ -48,7 +48,7 @@ function App() {
             moveLeft={movement.moveRight}
             moveRight={movement.moveLeft}
             dropBomb={dropBomb}
-            onBombDropped={() => {
+            resetBombDropped={() => {
               setDropBomb(false);
             }}
           />

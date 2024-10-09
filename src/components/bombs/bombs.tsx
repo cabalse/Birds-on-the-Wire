@@ -6,13 +6,14 @@ import Bomb from "./bomb";
 import React from "react";
 
 const defaultDropPosition = { x: -0.1, y: 1.8 };
+const bombDelay = 10;
 
 type Props = {
   speed: { x: number; y: number };
   moveLeft: boolean;
   moveRight: boolean;
   dropBomb: boolean;
-  onBombDropped: () => void;
+  resetBombDropped: () => void;
 };
 
 const Bombs = ({
@@ -20,11 +21,12 @@ const Bombs = ({
   moveLeft,
   moveRight,
   dropBomb,
-  onBombDropped,
+  resetBombDropped,
 }: Props) => {
   const [bombs, setBombs] = useState<JSX.Element[]>([]);
   const [bombId, setBombId] = useState(0);
   const [dropPosition, setDropPosition] = useState(defaultDropPosition);
+  const [bombDelayCounter, setBombDelayCounter] = useState<number>(0);
 
   const ref = useRef<Group>(null);
 
@@ -34,12 +36,16 @@ const Bombs = ({
       if (moveRight) ref.current.position.x += speed.x * delta;
       setDropPosition({ x: -ref.current.position.x, y: defaultDropPosition.y });
     }
+    setBombDelayCounter((prev) => {
+      if (prev > 0) return --prev;
+      return 0;
+    });
   });
 
   useEffect(() => {
-    if (dropBomb) {
-      console.log("drop bomb");
-      onBombDropped();
+    if (dropBomb && bombDelayCounter == 0) {
+      console.log("Drop bomb");
+      setBombDelayCounter(bombDelay);
       setBombs((prev) => {
         const id = bombId;
         setBombId((prev) => prev + 1);
@@ -48,14 +54,13 @@ const Bombs = ({
             position={{ x: dropPosition.x, y: dropPosition.y }}
             key={id}
             speed={speed.y}
-            onPositionChange={(position) => {
-              console.log(position);
-            }}
+            onPositionChange={(position) => {}}
           />
         );
         return [...prev, newBomb];
       });
     }
+    resetBombDropped();
   }, [dropBomb]);
 
   return (
