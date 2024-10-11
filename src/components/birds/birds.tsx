@@ -25,7 +25,24 @@ const Birds = ({ speed, moveLeft, moveRight }: Props) => {
 
   return (
     <group ref={ref} position={[0, 0, 0]}>
-      <Bird scale={1} frameSpeed={0.2} />
+      <Bird
+        scale={1}
+        frameSpeed={0.2}
+        position={[2, 3.4, 0]}
+        animation="idle"
+      />
+      <Bird
+        scale={1}
+        frameSpeed={0.2}
+        position={[-3, 3.4, 0]}
+        animation="flying"
+      />
+      <Bird
+        scale={1}
+        frameSpeed={0.2}
+        position={[-5, 3.4, 0]}
+        animation="flying"
+      />
     </group>
   );
 };
