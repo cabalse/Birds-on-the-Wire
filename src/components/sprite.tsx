@@ -1,10 +1,11 @@
 import { forwardRef } from "react";
 import { Object3DEventMap, Sprite as ThreeSprite, Texture } from "three";
+import { Vector3 } from "@react-three/fiber";
 
 type Props = {
   texture: Texture;
   scale: [number, number, number];
-  position: [number, number, number];
+  position: Vector3;
   rotation?: number;
 };
 

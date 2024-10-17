@@ -4,13 +4,14 @@ import { Sprite as ThreeSprite } from "three";
 import Sprite from "../sprite";
 import useTexture from "../../hooks/use-texture";
 import { useFrame } from "@react-three/fiber";
+import Position2D from "../../types/position-2d";
 
 const bombScale = 0.5;
 
 type Props = {
-  position: { x: number; y: number };
+  position: Position2D;
   speed: number;
-  onPositionChange: (position: { x: number; y: number }) => void;
+  onPositionChange: (position: Position2D) => void;
 };
 
 const Bomb = ({ position, speed, onPositionChange }: Props) => {
