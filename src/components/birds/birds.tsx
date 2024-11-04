@@ -1,20 +1,27 @@
 import { useFrame } from "@react-three/fiber";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Group } from "three";
 import Bird from "./bird";
+import { Body, System } from "detect-collisions";
 
 type Props = {
   speed: { x: number; y: number };
   moveLeft: boolean;
   moveRight: boolean;
+  detection: System<Body>;
+  hit: any;
 };
 
-const Birds = ({ speed, moveLeft, moveRight }: Props) => {
+const Birds = ({ speed, moveLeft, moveRight, detection, hit }: Props) => {
   // const [birds, setBirds] = useState<JSX.Element[]>([]);
   // const [birdId, setBirdId] = useState(0);
 
   const ref = useRef<Group>(null);
+
+  useEffect(() => {
+    console.log("A bird is hit", hit);
+  }, [hit]);
 
   useFrame((state, delta) => {
     if (ref.current) {
@@ -28,20 +35,23 @@ const Birds = ({ speed, moveLeft, moveRight }: Props) => {
       <Bird
         scale={1}
         frameSpeed={0.2}
-        position={[2, 3.4, 0]}
+        position={[0, -1, 0]}
         animation="idle"
+        detection={detection}
       />
       <Bird
         scale={1}
         frameSpeed={0.2}
-        position={[-3, 3.4, 0]}
+        position={[-2, -1, 0]}
         animation="flying"
+        detection={detection}
       />
       <Bird
         scale={1}
         frameSpeed={0.2}
-        position={[-5, 3.4, 0]}
+        position={[2, -1, 0]}
         animation="flying"
+        detection={detection}
       />
     </group>
   );

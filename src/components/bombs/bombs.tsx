@@ -6,9 +6,10 @@ import Bomb from "./bomb";
 import React from "react";
 import BombElement from "../../types/bomb-element";
 import Position2D from "../../types/position-2d";
+import { Body, System } from "detect-collisions";
 
-const defaultDropPosition = { x: -0.1, y: 1.8 };
-const bombDelay = 10;
+const dropPositionOffset = { x: -0.15, y: 1.8 };
+const bombDelay = 15;
 
 type Props = {
   speed: { x: number; y: number };
@@ -16,6 +17,8 @@ type Props = {
   moveRight: boolean;
   dropBomb: boolean;
   resetBombDropped: () => void;
+  onHit: (id: number, response: any) => void;
+  detection: System<Body>;
 };
 
 const Bombs = ({
@@ -24,10 +27,12 @@ const Bombs = ({
   moveRight,
   dropBomb,
   resetBombDropped,
+  onHit,
+  detection,
 }: Props) => {
   const [bombs, setBombs] = useState<BombElement[]>([]);
   const [bombId, setBombId] = useState(0);
-  const [dropPosition, setDropPosition] = useState(defaultDropPosition);
+  const [dropPosition, setDropPosition] = useState(dropPositionOffset);
   const [bombDelayCounter, setBombDelayCounter] = useState<number>(0);
   const { viewport } = useThree();
 
@@ -37,7 +42,10 @@ const Bombs = ({
     if (ref.current) {
       if (moveLeft) ref.current.position.x -= speed.x * delta;
       if (moveRight) ref.current.position.x += speed.x * delta;
-      setDropPosition({ x: -ref.current.position.x, y: defaultDropPosition.y });
+      setDropPosition({
+        x: -ref.current.position.x + dropPositionOffset.x,
+        y: dropPositionOffset.y,
+      });
     }
     setBombDelayCounter((prev) => {
       if (prev > 0) return --prev;
@@ -63,12 +71,18 @@ const Bombs = ({
 
         const newBomb = React.cloneElement(
           <Bomb
+            id={id}
             position={{ x: dropPosition.x, y: dropPosition.y }}
             key={id}
             speed={speed.y}
             onPositionChange={(position) => {
               if (isPositionBelowScreenBottom(position)) removeBombFromList(id);
             }}
+            onHit={(id, response) => {
+              onHit(id, response);
+              removeBombFromList(id);
+            }}
+            detection={detection}
           />
         );
 

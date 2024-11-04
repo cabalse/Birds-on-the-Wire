@@ -1,4 +1,7 @@
 .canvas-container {
+  position: absolute;
+  top: 5;
+  left: 5;
   border: 1px solid #000;
   width: 730px;
   height: 456px;
