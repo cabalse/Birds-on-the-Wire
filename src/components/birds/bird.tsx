@@ -4,7 +4,6 @@ import { Texture, Sprite as ThreeSprite } from "three";
 import Sprite from "../sprite";
 import useFlying from "./animations/use-flying";
 import useIdle from "./animations/use-idle";
-import { select } from "three/webgpu";
 
 type Props = {
   scale: number;
@@ -18,9 +17,6 @@ const Bird = ({ scale, frameSpeed, position, animation }: Props) => {
   const [currentSetOfFrames, setCurrentSetOfFrames] = useState<Texture[]>([]);
   const [currectFrame, setCurrenBodyFrame] = useState<number>(0);
   const [internalScale, setInternalScale] = useState<number>(scale);
-
-  const [flying, ratio] = useFlying();
-  const [idle, , idleScale] = useIdle();
 
   useEffect(() => {
     switch (animation) {

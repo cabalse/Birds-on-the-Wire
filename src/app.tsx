@@ -9,6 +9,7 @@ import Player from "./components/player/player";
 import "./app.css";
 import Bombs from "./components/bombs/bombs";
 import Birds from "./components/birds/birds";
+import useFlying from "./components/birds/animations/use-flying";
 
 function App() {
   const [movement, setMovement] = useState({
@@ -16,6 +17,9 @@ function App() {
     moveRight: false,
   });
   const [dropBomb, setDropBomb] = useState(false);
+
+  const [flying, ratio] = useFlying();
+  const [idle, , idleScale] = useIdle();
 
   return (
     <div className="canvas-container">

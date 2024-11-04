@@ -8,6 +8,7 @@ type Props = {
   speed: { x: number; y: number };
   moveLeft: boolean;
   moveRight: boolean;
+  animations;
 };
 
 const Birds = ({ speed, moveLeft, moveRight }: Props) => {
