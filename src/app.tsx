@@ -36,14 +36,14 @@ function App() {
             setDropBomb(true);
           }}
         />
-        <Canvas>
+        <Canvas orthographic={true}>
           <Suspense fallback={null}>
             <Background
-              speeds={[0.5, 1.3, 3]} // Speeds for the three different layers of the background
+              speeds={[150, 250, 400]} // Speeds for the three different layers of the background
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
             />
-            <Foreground
+            {/* <Foreground
               speed={6}
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
@@ -69,7 +69,7 @@ function App() {
               detection={detectionSystem}
               hit={hit}
             />
-            <CollisionDebug detection={detectionSystem} canvasRef={ref} />
+            <CollisionDebug detection={detectionSystem} canvasRef={ref} /> */}
           </Suspense>
         </Canvas>
       </div>

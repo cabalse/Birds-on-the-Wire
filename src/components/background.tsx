@@ -5,6 +5,7 @@ import SlicedBackground from "./sliced-background";
 
 import sun from "./../assets/background/sun.png";
 import background_slice from "./../assets/background/sky_color.png";
+import CONSTANTS from "../constants";
 
 type Props = {
   speeds: number[];
@@ -13,7 +14,10 @@ type Props = {
 };
 
 const Background = ({ speeds, moveLeft, moveRight }: Props) => {
-  const [sunTexture, , sunWidth, sunHeight] = useTexture(sun, 0.01);
+  const [sunTexture, , sunWidth, sunHeight] = useTexture(
+    sun,
+    CONSTANTS.SUN_SCALE
+  );
 
   return (
     <>
@@ -22,7 +26,7 @@ const Background = ({ speeds, moveLeft, moveRight }: Props) => {
         texture={sunTexture}
         width={sunWidth}
         height={sunHeight}
-        position={[4, 2, 0]}
+        position={[200, 110, 0]}
       />
       <ParallaxBackground
         speeds={speeds}
