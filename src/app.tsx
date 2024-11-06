@@ -43,13 +43,13 @@ function App() {
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
             />
-            {/* <Foreground
-              speed={6}
+            <Foreground
+              speed={500}
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
             />
             <Player facing={movement.moveLeft ? "left" : "right"} />
-            <Bombs
+            {/* <Bombs
               speed={{ x: 6, y: 2 }} // Speed x - for movement when player moves sideways, y - for the dropping bomb
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}

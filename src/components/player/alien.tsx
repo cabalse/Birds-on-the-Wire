@@ -70,7 +70,7 @@ const Alien = ({ scale, frameSpeed, animation, direction }: Props) => {
 
   return (
     <Sprite
-      position={[-0.1, 0.4, 0]}
+      position={[0, 150, 0]}
       texture={currentSetOfFrames[currectFrame]}
       scale={[frameRatio * scale, scale, scale]}
     />

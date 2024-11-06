@@ -1,6 +1,6 @@
 import Alien from "./alien";
 
-const scale = 1.8;
+const scale = 100;
 const frameSpeed = 0.2;
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 const Player = ({ facing }: Props) => {
   return (
-    <group position={[0, 2.4, 0]}>
+    <group position={[0, 0, 0]}>
       <Alien
         scale={scale}
         frameSpeed={frameSpeed}
