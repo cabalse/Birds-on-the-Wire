@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { System } from "detect-collisions";
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 import Background from "./components/background";
 import DetectKeyPress from "./components/detect-key-press";
@@ -11,6 +11,8 @@ import Birds from "./components/birds/birds";
 import CollisionDebug from "./components/collision-debug";
 
 import "./app.css";
+import CONSTANTS from "./constants";
+import DIRECTION from "./constants/direction";
 
 function App() {
   const ref = useRef();
@@ -19,8 +21,21 @@ function App() {
     moveLeft: false,
     moveRight: false,
   });
+  const [playerMovementDirection, setPlayerMovementDirection] = useState(
+    DIRECTION.NO_DIRECTION
+  );
   const [dropBomb, setDropBomb] = useState(false);
   const [hit, setHit] = useState({ id: 0, response: null });
+
+  useEffect(() => {
+    const movementDirection = () => {
+      if (movement.moveLeft) return DIRECTION.LEFT;
+      if (movement.moveRight) return DIRECTION.RIGHT;
+      return DIRECTION.NO_DIRECTION;
+    };
+    console.log("movementDirection", movementDirection());
+    setPlayerMovementDirection(movementDirection());
+  }, [movement.moveLeft, movement.moveRight]);
 
   return (
     <>
@@ -39,18 +54,21 @@ function App() {
         <Canvas orthographic={true}>
           <Suspense fallback={null}>
             <Background
-              speeds={[150, 250, 400]} // Speeds for the three different layers of the background
+              speeds={CONSTANTS.SPEED.BACKGROUND} // Speeds for the three different layers of the background
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
             />
             <Foreground
-              speed={500}
+              speed={CONSTANTS.SPEED.FOREGROUND}
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
             />
-            <Player facing={movement.moveLeft ? "left" : "right"} />
-            {/* <Bombs
-              speed={{ x: 6, y: 2 }} // Speed x - for movement when player moves sideways, y - for the dropping bomb
+            <Player facing={playerMovementDirection} />
+            <Bombs
+              speed={{
+                x: CONSTANTS.SPEED.FOREGROUND,
+                y: CONSTANTS.SPEED.BOMB_DROP,
+              }} // Speed x - for movement when player moves sideways, y - for the dropping bomb
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}
               dropBomb={dropBomb}
@@ -62,7 +80,7 @@ function App() {
               }}
               detection={detectionSystem}
             />
-            <Birds
+            {/* <Birds
               speed={{ x: 6, y: 2 }}
               moveLeft={movement.moveRight}
               moveRight={movement.moveLeft}

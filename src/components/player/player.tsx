@@ -1,10 +1,12 @@
+import DIRECTION from "../../constants/direction";
+import PLAYER_ANIMATION from "../../constants/player-animation";
 import Alien from "./alien";
 
 const scale = 100;
-const frameSpeed = 0.2;
+const animationFrameSpeed = 0.2;
 
 type Props = {
-  facing: "left" | "right";
+  facing: DIRECTION;
 };
 
 const Player = ({ facing }: Props) => {
@@ -12,8 +14,8 @@ const Player = ({ facing }: Props) => {
     <group position={[0, 0, 0]}>
       <Alien
         scale={scale}
-        frameSpeed={frameSpeed}
-        animation={"flight"}
+        animationFrameSpeed={animationFrameSpeed}
+        animation={PLAYER_ANIMATION.FLIGHT}
         direction={facing}
       />
     </group>

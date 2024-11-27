@@ -7,9 +7,10 @@ import React from "react";
 import BombElement from "../../types/bomb-element";
 import Position2D from "../../types/position-2d";
 import { Body, System } from "detect-collisions";
+import CONSTANTS from "../../constants";
 
-const dropPositionOffset = { x: -0.15, y: 1.8 };
-const bombDelay = 15;
+const dropPositionOffset = { x: 0, y: CONSTANTS.BOMB_DROP_Y_OFFSET };
+const bombDelay = CONSTANTS.BOMB_DROP_DELAY;
 
 type Props = {
   speed: { x: number; y: number };
@@ -76,7 +77,7 @@ const Bombs = ({
             key={id}
             speed={speed.y}
             onPositionChange={(position) => {
-              if (isPositionBelowScreenBottom(position)) removeBombFromList(id);
+              // if (isPositionBelowScreenBottom(position)) removeBombFromList(id);
             }}
             onHit={(id, response) => {
               onHit(id, response);

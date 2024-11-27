@@ -11,7 +11,7 @@ import bomb from "./../../assets/alien/bomb/missile.png";
 import useToDetectCoords from "../../hooks/use-to-detect-coords";
 import CONSTANTS from "../../constants";
 
-const bombScale = 0.5;
+const bombScale = 40;
 const objectWidth = 20;
 const objectHeight = 40;
 

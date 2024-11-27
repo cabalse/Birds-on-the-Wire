@@ -16,15 +16,16 @@ import frame008 from "./../../assets/alien/flying_left/__alien_enemy_4_red_white
 import frameRight000 from "./../../assets/alien/flying_right/__alien_enemy_4_red_white_flying_right_000.png";
 import frameRight001 from "./../../assets/alien/flying_right/__alien_enemy_4_red_white_flying_right_001.png";
 import frameRight002 from "./../../assets/alien/flying_right/__alien_enemy_4_red_white_flying_right_002.png";
+import DIRECTION from "../../constants/direction";
 
 type Props = {
   scale: number;
-  frameSpeed: number;
+  animationFrameSpeed: number;
   animation: "flight";
-  direction: "left" | "right";
+  direction: DIRECTION;
 };
 
-const Alien = ({ scale, frameSpeed, animation, direction }: Props) => {
+const Alien = ({ scale, animationFrameSpeed, animation, direction }: Props) => {
   const [f000, frameRatio, ,] = useTexture(frame000);
   const [f001, , ,] = useTexture(frame001);
   const [f002, , ,] = useTexture(frame002);
@@ -51,7 +52,7 @@ const Alien = ({ scale, frameSpeed, animation, direction }: Props) => {
   const [currectFrame, setCurrenBodyFrame] = useState<number>(0);
 
   useEffect(() => {
-    const dir = direction === "left" ? 0 : 1; // 0 is left and 1 is right
+    const dir = direction === DIRECTION.LEFT ? 0 : 1; // 0 is left and 1 is right
     setInternalDirection(dir);
     switch (animation) {
       case "flight":
@@ -64,7 +65,8 @@ const Alien = ({ scale, frameSpeed, animation, direction }: Props) => {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
-    const newFrame = Math.floor(time / frameSpeed) % currentSetOfFrames.length;
+    const newFrame =
+      Math.floor(time / animationFrameSpeed) % currentSetOfFrames.length;
     setCurrenBodyFrame(newFrame);
   });
 
